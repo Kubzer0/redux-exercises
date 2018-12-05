@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { increment, decrement } from './state/counter'
+import { increment, decrement, reset } from './state/counter'
 
 const Counter = (props) => (
     <div>
@@ -18,6 +18,11 @@ const Counter = (props) => (
         >
             -
     </button>
+        <button
+            onClick={() => { props._reset() }}
+        >
+            Reset
+    </button>
     </div>
 )
 
@@ -27,7 +32,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     _increment: () => dispatch(increment()),
-    _decrement: () => dispatch(decrement())
+    _decrement: () => dispatch(decrement()),
+    _reset: () => dispatch(reset())
 })
 
 export default connect(

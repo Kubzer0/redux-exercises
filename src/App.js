@@ -1,11 +1,12 @@
 import React from 'react';
 
-import Counter from './Counter'
+//import Counter from './Counter'
+import RandomUsers from './RandomUsers';
 
 const App= (props) =>{
   return(
     <div>
-      <Counter />
+      <RandomUsers />
     </div>
   )
 }

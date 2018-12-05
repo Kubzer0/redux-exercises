@@ -1,18 +1,28 @@
-import { createStore, combineReducers } from 'redux'
-
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
 import counter from './state/counter'
+import randomUsers, { setUsers } from './state/randomUsers'
 
-const rootReducer = combineReducers({
-    counter
+
+const reducer = combineReducers({
+    counter,
+    randomUsers
 })
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 export const store = createStore(
-    rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__()
+    reducer,
+    composeEnhancers(
+        applyMiddleware(thunk)
+    )
 )
 
-console.log(store)
-console.log(store.getState())
-console.log(rootReducer)
+store.dispatch(
+    setUsers([{
+        name:{
+            first: 'ala'
+        }
+    }])
+)
